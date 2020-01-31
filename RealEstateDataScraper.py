@@ -15,7 +15,10 @@ for page in range(1,int(page_num)):
     for item in content1:
         d = {}
         d["Rent Price"]=((item.find("a", {"class":"item-price"}).text).replace("KES","").replace("per month","").replace(" ",""))
-        d["Number of Beds"]=((item.find("span", {"class": "h-beds"}).text).replace(" ",""))
+        try:
+            d["Number of Beds"]=((item.find("span", {"class": "h-beds"}).text).replace(" ",""))
+        except:
+            d["Number of Beds"] = None
         try:
             d["Number of Baths"]=((item.find("span",{"class":"h-baths"}).text).replace(" ",""))
         except:
