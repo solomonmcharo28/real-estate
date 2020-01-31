@@ -14,7 +14,10 @@ for page in range(1,int(page_num)):
     content1 = soup2.find_all("div",{"class":"result-card-item"})
     for item in content1:
         d = {}
-        d["Rent Price"]=((item.find("a", {"class":"item-price"}).text).replace("KES","").replace("per month","").replace(" ",""))
+        try:
+            d["Rent Price"]=((item.find("a", {"class":"item-price"}).text).replace("KES","").replace("per month","").replace(" ",""))
+        except:
+            d["Rent Price"]=None
         try:
             d["Number of Beds"]=((item.find("span", {"class": "h-beds"}).text).replace(" ",""))
         except:
